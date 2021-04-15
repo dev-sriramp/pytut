@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from '../screens/SplashScreen';
-import { ContextManager } from '../components/ContextManager';
 import HomeScreen from '../screens/HomeScreen';
 import LandScreen from '../screens/LandScreen';
 
@@ -13,7 +12,7 @@ const MyNavigator = () => {
     React.useEffect(() => {
         setTimeout(async () =>{
             setShowSplash(false);
-        },1000);
+        },3000);
     },[]);
 if(splashScreen){
     return <SplashScreen />;
