@@ -42,6 +42,6 @@ const styles = StyleSheet.create(
         splash: {
             height: hp('40%'),
             width: wp('40%'),
-            paddingLeft: wp('10%')
+            
         },
     });

@@ -1,93 +1,39 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  StatusBar,
-  SafeAreaView,
-  ScrollView,
-  Text,
-} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import 'react-native-linear-gradient';
-import { APP_SECONDARY_COLOR,APP_PRIMARY_COLOR ,URLS,APP_WHITE} from '../util/constants';
-const LandScreen = ({navigation}) => {
+import { WebView } from 'react-native-webview';
+import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import SplashScreen from './SplashScreen';
+
+
+const LandScreen = () => {
+  const LoadingIndicatorView = () => {
+    return <SplashScreen/>
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-    <StatusBar
-        barStyle="dark-content"
-        hidden={false}
-        backgroundColor={APP_SECONDARY_COLOR}
-        translucent={false}
-        networkActivityIndicatorVisible={true}
-      />
-    <ScrollView>
-    <View style={styles.container} >
-        <TouchableOpacity >
-          <Animatable.Image onStartShouldSetResponder={() => navigation.navigate('HomeScreen')}
-            animation="pulse"
-            iterationCount={200000}
-              source={{
-                uri: URLS+'Alphabet.gif',
-              }}
-            style={styles.logo}
+          <WebView
+          renderLoading={LoadingIndicatorView}
+      originWhitelist={['*']}
+      source={{ uri: 'http://pythontutor.com/', }}
+      style={{width:wp('210%'), height:hp('210%') }}
+        
+           startInLoadingState={true}
+           scalesPageToFit={true}
+      
           />
-          <Text style={styles.title} >ALPHABET'S</Text>
-        </TouchableOpacity>
-        <TouchableOpacity >
-          <Animatable.Image onStartShouldSetResponder={() => navigation.navigate('HomeScreen')}
-            animation="fadeInUpBig"
-            iterationCount={1}
-            de
-              source={{
-                uri: URLS + 'comming1.png',
-              }}
-            style={styles.logo}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity >
-          <Animatable.Image onStartShouldSetResponder={() => navigation.navigate('HomeScreen')}
-            animation="zoomInUp"
-            iterationCount={1}
-              source={{
-                uri: URLS + 'comming1.png',
-              }}
-            style={styles.logo}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity >
-          <Animatable.Image onStartShouldSetResponder={() => navigation.navigate('HomeScreen')}
-            animation="fadeInUpBig"
-            iterationCount={1}
-              source={{
-                uri: URLS + 'comming1.png',
-              }}
-            style={styles.logo}
-          />
-        </TouchableOpacity>
-    </View>
-      </ScrollView>
-    </SafeAreaView>
   );
 };
 export default LandScreen;
-const styles = StyleSheet.create({
-  title: {
-    color: APP_WHITE,
-    fontSize: 30,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-  },
-  container: {
-    paddingTop: 15,
-    backgroundColor: APP_SECONDARY_COLOR,
-  },
-  logo: {
-    alignSelf:'center',
-    width: 250,
-    height: 250,
-    borderWidth:5,
-    borderRadius:50,
-    borderColor:APP_PRIMARY_COLOR,
-  },
-});
+const styles = StyleSheet.create(
+  {
+    ActivityIndicatorStyle: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center'
+
+    },
+  });

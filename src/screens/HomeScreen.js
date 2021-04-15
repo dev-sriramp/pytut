@@ -5,6 +5,7 @@ import {
     Text,
     StatusBar,
     SafeAreaView,
+    Linking,
 } from 'react-native';
 import {APP_WHITE,APP_PRIMARY_COLOR} from '../util/constants';
 const HomeScreen = ({navigation}) => {
@@ -20,6 +21,10 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.header}>
                 <Text onStartShouldSetResponder={() => navigation.navigate('LandScreen')}
                 style={styles.text}>Miniature</Text>
+                <Text style={{ color: 'blue' }}
+                    onPress={() => Linking.openURL('http://pythontutor.com')}>
+                    pythontutor
+</Text>
             </View>
         </SafeAreaView>
     );
