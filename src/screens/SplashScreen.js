@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet,View,SafeAreaView, StatusBar} from 'react-native';
-import {APP_WHITE } from '../util/constants';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { HP , WP , APP_WHITE} from '../util/constants';
 import LottieView from 'lottie-react-native';
 
 const SplashScreen = () => {
@@ -36,12 +35,12 @@ const styles = StyleSheet.create(
             backgroundColor:APP_WHITE,
         },
         header: {
-            paddingTop:hp('30%'),
-            paddingBottom: hp('30%'),
+            paddingTop:HP('30%'),
+            paddingBottom: HP('30%'),
         },
         splash: {
-            height: hp('40%'),
-            width: wp('40%'),
+            height: HP('40%'),
+            width: WP('40%'),
             
         },
     });

@@ -16,6 +16,8 @@ target 'py_tut' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
   target 'py_tutTests' do
     inherit! :complete
     # Pods for testing

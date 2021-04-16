@@ -1,14 +1,16 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    StatusBar,
-    SafeAreaView,
-    Linking,
-} from 'react-native';
+import {StyleSheet,View,Text,StatusBar,SafeAreaView,Linking,} from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
 import {APP_WHITE,APP_PRIMARY_COLOR} from '../util/constants';
 const HomeScreen = ({navigation}) => {
+    const noInternet = () => {
+        NetInfo.addEventListener(state => {
+            if (state.isConnected == true) { navigation.navigate('LandScreen'); }
+            else {
+                navigation.navigate('NoInternet');
+            }
+        })
+    };
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar
@@ -19,7 +21,7 @@ const HomeScreen = ({navigation}) => {
                 networkActivityIndicatorVisible={true}
             />
             <View style={styles.header}>
-                <Text onStartShouldSetResponder={() => navigation.navigate('LandScreen')}
+                <Text onStartShouldSetResponder={noInternet}
                 style={styles.text}>Miniature</Text>
                 <Text style={{ color: 'blue' }}
                     onPress={() => Linking.openURL('http://pythontutor.com')}>
