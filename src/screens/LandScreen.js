@@ -14,7 +14,7 @@ const LandScreen = () => {
           <WebView
           renderLoading={LoadingIndicatorView}
       originWhitelist={['*']}
-      source={{ uri: 'http://pythontutor.com/', }}
+      source={{ uri: 'https://cscircles.cemc.uwaterloo.ca/visualize', }}
       // style={{width:WP('210%'), height:HP('210%') }}
            startInLoadingState={true}
            scalesPageToFit={false}

@@ -17,7 +17,7 @@ const SplashScreen = () => {
     <View style={styles.header}>
         <LottieView 
         source={require('../assets/Splash.json')}
-        loop={false}
+        loop={true}
         autoPlay={true}
         progress={1}
         style={styles.splash}

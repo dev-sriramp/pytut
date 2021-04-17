@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet,View,Text,StatusBar,SafeAreaView,Linking,} from 'react-native';
 import NetInfo from "@react-native-community/netinfo";
-import {APP_WHITE,APP_PRIMARY_COLOR} from '../util/constants';
+import LottieView from 'lottie-react-native';
+import {APP_WHITE,APP_PRIMARY_COLOR , HP,WP} from '../util/constants';
 const HomeScreen = ({navigation}) => {
     const noInternet = () => {
         NetInfo.addEventListener(state => {
@@ -21,12 +22,14 @@ const HomeScreen = ({navigation}) => {
                 networkActivityIndicatorVisible={true}
             />
             <View style={styles.header}>
-                <Text onStartShouldSetResponder={noInternet}
-                style={styles.text}>Miniature</Text>
-                <Text style={{ color: 'blue' }}
-                    onPress={() => Linking.openURL('http://pythontutor.com')}>
-                    pythontutor
-</Text>
+                <LottieView onStartShouldSetResponder={noInternet}
+                    source={require('../assets/Python.json')}
+                    loop={true}
+                    autoPlay={true}
+                    progress={10000}
+                    style={styles.splash}
+                />
+               
             </View>
         </SafeAreaView>
     );
@@ -40,7 +43,9 @@ const styles = StyleSheet.create({
         backgroundColor: APP_WHITE,
     },
     header: {
-        flex: 4,
+        height: HP('20%'),
+        width: WP('20%'),
+        left:WP('40%'),
         justifyContent: 'center',
         alignItems: 'center',
     },
