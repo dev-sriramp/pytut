@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from '../screens/SplashScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LandScreen from '../screens/LandScreen';
+import NoInternet from '../screens/NoInternet'
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,8 @@ return (
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="HomeScreen" component={HomeScreen} />
                 <Stack.Screen name="LandScreen" component={LandScreen} />
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
+            <Stack.Screen name="NoInternet" component={NoInternet} />
             </Stack.Navigator>
         </NavigationContainer>
     );
