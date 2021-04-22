@@ -1,26 +1,35 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { WebView } from 'react-native-webview';
-import { StyleSheet } from 'react-native';
-import { HP , WP} from '../util/constants';
+import { StyleSheet,Text ,View} from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
+
 import SplashScreen from './SplashScreen';
-
-
-const LandScreen = () => {
-  const LoadingIndicatorView = () => {
-    return <SplashScreen/>
+class LandScreen extends Component {
+  constructor() {
+    super();
+  }
+  LoadingIndicatorView = () => {
+    NetInfo.addEventListener(state => {
+      if (state.isConnected != true) { this.props.navigation.navigate('NoInternet'); }
+      else { return <SplashScreen /> };
+    }
+    );
   };
-
+render(){
+ var { siteName } = this.props.route.params;
+ if(siteName == undefined || siteName == ''){
+   siteName = 'visualize'
+ }
+  const source = '<iframe src="https://www.pythontutor.com/' + '' + siteName + '' + '.html#mode=edit" width="100%" height=100%" style="border:none;"></iframe>'
   return (
           <WebView
-          renderLoading={LoadingIndicatorView}
+          renderLoading={this.LoadingIndicatorView}
       originWhitelist={['*']}
-      source={{ uri: 'https://cscircles.cemc.uwaterloo.ca/visualize', }}
-      // style={{width:WP('210%'), height:HP('210%') }}
+      source={{ html: source }}
            startInLoadingState={true}
-           scalesPageToFit={false}
-      
-          />
-  );
+          scalesPageToFit={false}
+         />
+  );};
 };
 export default LandScreen;
 const styles = StyleSheet.create(

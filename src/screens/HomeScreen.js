@@ -1,18 +1,31 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {StyleSheet,View,Text,StatusBar,SafeAreaView,Linking,} from 'react-native';
 import NetInfo from "@react-native-community/netinfo";
 import LottieView from 'lottie-react-native';
 import {APP_WHITE,APP_PRIMARY_COLOR , HP,WP} from '../util/constants';
-const HomeScreen = ({navigation}) => {
-    const noInternet = () => {
-        NetInfo.addEventListener(state => {
-            if (state.isConnected == true) { navigation.navigate('LandScreen'); }
-            else {
-                navigation.navigate('NoInternet');
-            }
-        })
+
+class HomeScreen extends Component{
+    constructor() {
+        super();
+        this.state = {
+            SiteName: "visualize",
+        };
     };
+    noInternet = siteValue => () => {
+        this.setState({ siteName: siteValue });
+            NetInfo.addEventListener(state => {
+                if (state.isConnected == true) {
+                    this.props.navigation.navigate('LandScreen', { siteName: this.state.siteName, });
+                }
+                else {
+                    this.props.navigation.navigate('NoInternet');
+                }
+            })
+        };
+    render(){
+        
     return (
+        
         <SafeAreaView style={styles.container}>
             <StatusBar
                 barStyle='dark-content'
@@ -22,7 +35,7 @@ const HomeScreen = ({navigation}) => {
                 networkActivityIndicatorVisible={true}
             />
             <View style={styles.header}>
-                <LottieView onStartShouldSetResponder={noInternet}
+                <LottieView onStartShouldSetResponder={this.noInternet('visualize')}
                     source={require('../assets/Python.json')}
                     loop={true}
                     autoPlay={true}
@@ -32,8 +45,9 @@ const HomeScreen = ({navigation}) => {
                
             </View>
         </SafeAreaView>
-    );
+    );}
 };
+
 
 export default HomeScreen;
 
