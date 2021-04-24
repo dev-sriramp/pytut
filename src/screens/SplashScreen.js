@@ -37,7 +37,7 @@ const styles = StyleSheet.create(
             backgroundColor:APP_WHITE,
         },
         header: {
-            paddingTop:HP('30%'),
+            paddingTop:HP('35%'),
             paddingBottom: HP('30%'),
         },
         splash: {

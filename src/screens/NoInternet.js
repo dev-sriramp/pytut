@@ -36,7 +36,7 @@ const styles = StyleSheet.create(
         },
         header: {
             paddingTop: HP('30%'),
-            paddingBottom: HP('30%'),
+            paddingBottom: HP('40%'),
             paddingLeft:WP('20%'),
         },
         noInternet: {
