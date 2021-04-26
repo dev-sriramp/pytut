@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { WebView } from 'react-native-webview';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, BackHandler } from 'react-native';
 import NetInfo from "@react-native-community/netinfo";
-import SplashScreen from './SplashScreen';
+import LoadingScreen from './LoadingScreen';
+import HomeScreen from './HomeScreen';
+
 class LandScreen extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
   }
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick() {
+    this.props.navigation.navigate('HomeScreen');
+    return true;
+  }
+
   LoadingIndicatorView = () => {
-    return <SplashScreen />
+    return <LoadingScreen />
   };
   noInternet = () => {
     NetInfo.addEventListener(state => {
@@ -25,7 +41,7 @@ class LandScreen extends Component {
     if (siteName == undefined || siteName == '') {
       siteName = 'visualize'
     }
-    const source = '<iframe src="https://www.pythontutor.com/' + '' + siteName + '' + '.html#mode=edit" width="100%" height=100%" style="border:none;"></iframe>';
+    var source = '<iframe src="http://www.pythontutor.com/' + '' + siteName + '' + '.html#mode=edit" width="100%" height=100%" style="border:none;"></iframe>';
     this.noInternet;
     return (
       <WebView
