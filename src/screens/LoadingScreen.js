@@ -2,19 +2,14 @@ import React,{Component} from 'react';
 import {StyleSheet,View,SafeAreaView, StatusBar} from 'react-native';
 import { HP , WP , APP_WHITE} from '../util/constants';
 import LottieView from 'lottie-react-native';
+import STatusBar from './STatusBar';
 
 class SplashScreen extends Component{
     render(){
         return (
 
             <SafeAreaView style={styles.container}>
-                <StatusBar
-                    barStyle="dark-content"
-                    hidden={false}
-                    backgroundColor={APP_WHITE}
-                    translucent={false}
-                    networkActivityIndicatorVisible={true}
-                />
+               <STatusBar />
                 <View style={styles.header}>
                     <LottieView
                         source={require('../assets/Loading.json')}
