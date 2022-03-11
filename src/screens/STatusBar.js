@@ -11,4 +11,5 @@ return(
                     networkActivityIndicatorVisible={true}
                 />
 )
-}
+};
+export default STatusBar;
