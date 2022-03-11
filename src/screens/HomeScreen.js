@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, SafeAreaView, Image, ScrollView } from 'react-native';
 import NetInfo from "@react-native-community/netinfo";
 import { APP_WHITE, } from '../util/constants';
+import STatusBar from './STatusBar';
 
 class HomeScreen extends Component {
     constructor() {
@@ -27,13 +28,7 @@ class HomeScreen extends Component {
         return (
 
             <SafeAreaView style={styles.container}>
-                <StatusBar
-                    barStyle='dark-content'
-                    hidden={false}
-                    backgroundColor={APP_WHITE}
-                    translucent={false}
-                    networkActivityIndicatorVisible={true}
-                />
+               <STatusBar />
                 <ScrollView>
                     <View style={styles.header}>
                         <Image onStartShouldSetResponder={this.noInternet('visualize')}
